@@ -92,7 +92,7 @@ async function scanFrame(isAuto) {
     const uidCanvas = cropUIDRegion(fullCanvas);
     const tableCanvas = cropTableRegion(fullCanvas);
 
-    preprocess(uidCanvas, 170);
+    preprocess(uidCanvas, 150);
     preprocess(tableCanvas, 165);
 
     const signature = buildSignature(uidCanvas, tableCanvas);
@@ -153,10 +153,10 @@ function cropUIDRegion(source) {
   const sw = source.width;
   const sh = source.height;
 
-  const x = Math.floor(sw * 0.66);
-  const y = Math.floor(sh * 0.05);
-  const w = Math.floor(sw * 0.26);
-  const h = Math.floor(sh * 0.13);
+  const x = Math.floor(sw * 0.68);
+  const y = Math.floor(sh * 0.12);
+  const w = Math.floor(sw * 0.22);
+  const h = Math.floor(sh * 0.10);
 
   return cropCanvas(source, x, y, w, h);
 }
@@ -165,10 +165,10 @@ function cropTableRegion(source) {
   const sw = source.width;
   const sh = source.height;
 
-  const x = Math.floor(sw * 0.07);
-  const y = Math.floor(sh * 0.19);
-  const w = Math.floor(sw * 0.86);
-  const h = Math.floor(sh * 0.18);
+  const x = Math.floor(sw * 0.09);
+  const y = Math.floor(sh * 0.22);
+  const w = Math.floor(sw * 0.82);
+  const h = Math.floor(sh * 0.12);
 
   return cropCanvas(source, x, y, w, h);
 }
@@ -182,14 +182,17 @@ function cropCanvas(source, x, y, w, h) {
   return out;
 }
 
-function preprocess(canvas, threshold = 170) {
+function preprocess(canvas, threshold = 160) {
   const ctx = canvas.getContext('2d', { willReadFrequently: true });
   const img = ctx.getImageData(0, 0, canvas.width, canvas.height);
   const d = img.data;
 
   for (let i = 0; i < d.length; i += 4) {
     const gray = 0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2];
-    const v = gray > threshold ? 255 : 0;
+
+    let v = gray;
+    v = v > threshold ? 255 : 0;
+
     d[i] = v;
     d[i + 1] = v;
     d[i + 2] = v;
@@ -197,6 +200,7 @@ function preprocess(canvas, threshold = 170) {
 
   ctx.putImageData(img, 0, 0);
 }
+
 
 function buildSignature(uidCanvas, tableCanvas) {
   return miniHash(uidCanvas) + '_' + miniHash(tableCanvas);

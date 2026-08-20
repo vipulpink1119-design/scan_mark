@@ -67,12 +67,20 @@ h1 {
   border-radius: 8px;
 }
 
-.table-roi {
-  left: 7%;
-  top: 21%;
-  width: 86%;
-  height: 18%;
+.uid-roi {
+  left: 68%;
+  top: 12%;
+  width: 22%;
+  height: 10%;
 }
+
+.table-roi {
+  left: 9%;
+  top: 22%;
+  width: 82%;
+  height: 12%;
+}
+
 
 
 .controls {

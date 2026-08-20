@@ -121,7 +121,20 @@ async function scanFrame(isAuto) {
     const text = await res.text();
     const data = JSON.parse(text);
 
-    if (!data.success) throw new Error(data.message || 'Scan failed');
+    if (!data.success) {
+  const msg = String(data.message || 'Scan failed');
+
+  if (msg.includes('BILLING_DISABLED')) {
+    throw new Error('Google Vision API billing enable કરો. Cloud project માં billing off છે.');
+  }
+
+  if (msg.includes('Vision API error 403')) {
+    throw new Error('Vision API permission/billing issue છે.');
+  }
+
+  throw new Error(msg);
+}
+
 
     const row = data.parsed || {};
     row.rawUIDText = data.rawUIDText || '';
@@ -378,7 +391,11 @@ async function saveRows() {
     const text = await res.text();
     const data = JSON.parse(text);
 
-    if (!data.success) throw new Error(data.message || 'Save failed');
+   if (!data.success) {
+  const msg = String(data.message || 'Save failed');
+  throw new Error(msg);
+}
+
 
     setStatus(`Saved ${data.saved} rows successfully`);
     scannedRows = [];

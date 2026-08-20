@@ -39,8 +39,10 @@ h1 {
 }
 
 #video {
-  object-fit: cover;
+  object-fit: contain;
+  background: #000;
 }
+
 
 .overlay {
   pointer-events: none;
@@ -65,19 +67,13 @@ h1 {
   border-radius: 8px;
 }
 
-.uid-roi {
-  right: 6%;
-  top: 8%;
-  width: 28%;
-  height: 12%;
-}
-
 .table-roi {
   left: 7%;
   top: 21%;
   width: 86%;
   height: 18%;
 }
+
 
 .controls {
   display: flex;

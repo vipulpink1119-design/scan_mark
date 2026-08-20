@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mark Scanner V2 Pro</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <h1>Mark Scanner V2 Pro</h1>
+
+    <div class="scanner-shell">
+      <video id="video" autoplay playsinline muted></video>
+      <canvas id="fullCanvas" class="hidden"></canvas>
+
+      <div class="overlay">
+        <div class="roi uid-roi">
+          <span>UID Area</span>
+        </div>
+        <div class="roi table-roi">
+          <span>Marks Table Area</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button id="startBtn">Start Camera</button>
+      <button id="scanBtn">Scan Now</button>
+      <button id="autoBtn">Auto Scan: OFF</button>
+      <button id="clearBtn">Clear All</button>
+      <button id="saveBtn">Save To Sheet</button>
+    </div>
+
+    <div id="status">Ready</div>
+
+    <div class="table-wrap">
+      <table id="dataTable">
+        <thead>
+          <tr>
+            <th>UID</th>
+            <th>Q1</th>
+            <th>Q2</th>
+            <th>Q3</th>
+            <th>Q4</th>
+            <th>Q5</th>
+            <th>Q6</th>
+            <th>Q7</th>
+            <th>Q8</th>
+            <th>Q9</th>
+            <th>Q10</th>
+            <th>Q11</th>
+            <th>Q12</th>
+            <th>Q13</th>
+            <th>Total</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

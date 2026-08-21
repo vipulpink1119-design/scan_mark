@@ -1,37 +1,36 @@
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #f3f6fb;
-  color: #1e1e1e;
+  background: #f4f7fb;
+  color: #222;
 }
 
 .app {
-  max-width: 1200px;
+  max-width: 1240px;
   margin: auto;
   padding: 16px;
 }
 
 h1 {
   text-align: center;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .scanner-shell {
   position: relative;
   width: 100%;
-  max-width: 560px;
+  max-width: 580px;
   margin: 0 auto 16px;
   aspect-ratio: 3 / 4;
   background: #000;
-  overflow: hidden;
   border-radius: 14px;
+  overflow: hidden;
 }
 
-#video, #fullCanvas, .overlay {
+#video,
+#overlayCanvas {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -43,77 +42,53 @@ h1 {
   background: #000;
 }
 
-
-.overlay {
+#overlayCanvas {
   pointer-events: none;
 }
 
-.roi {
+.align-status {
   position: absolute;
-  border: 3px solid #00ff88;
-  border-radius: 10px;
-  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.18);
-}
-
-.roi span {
-  position: absolute;
-  top: -28px;
-  left: 0;
-  background: #00ff88;
-  color: #000;
-  font-size: 12px;
-  font-weight: bold;
-  padding: 4px 8px;
+  top: 10px;
+  left: 10px;
+  z-index: 5;
+  padding: 6px 10px;
   border-radius: 8px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 13px;
 }
 
-.uid-roi {
-  left: 68%;
-  top: 12%;
-  width: 22%;
-  height: 10%;
-}
-
-.table-roi {
-  left: 9%;
-  top: 22%;
-  width: 82%;
-  height: 12%;
-}
-
-
+.align-status.good { background: #0f9d58; }
+.align-status.bad { background: #d93025; }
 
 .controls {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
   justify-content: center;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 button {
-  border: none;
-  background: #1565c0;
-  color: #fff;
   padding: 10px 14px;
+  border: none;
   border-radius: 8px;
+  background: #1565c0;
+  color: white;
   cursor: pointer;
   font-weight: 600;
 }
 
-button:hover {
-  background: #0d47a1;
-}
+button:hover:not(:disabled) { background: #0d47a1; }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
 
 #status {
   text-align: center;
-  margin-bottom: 16px;
   font-weight: bold;
+  margin-bottom: 14px;
 }
 
-.table-wrap {
-  overflow-x: auto;
-}
+.table-wrap { overflow-x: auto; }
 
 table {
   width: 100%;
@@ -122,28 +97,21 @@ table {
 }
 
 th, td {
-  border: 1px solid #d0d0d0;
+  border: 1px solid #ccc;
   padding: 8px;
   text-align: center;
   min-width: 56px;
 }
 
-th {
-  background: #eaf2ff;
-}
+th { background: #eaf2ff; }
+td[contenteditable="true"] { background: #fffde7; }
 
-td[contenteditable="true"] {
-  background: #fffde7;
-}
-
-.hidden {
-  display: none;
-}
+.flag-ok { color: #0f9d58; font-weight: 700; }
+.flag-check { color: #d93025; font-weight: 700; }
 
 .delete-btn {
   background: #d32f2f;
 }
-
 .delete-btn:hover {
-  background: #9a0007;
+  background: #a00000;
 }

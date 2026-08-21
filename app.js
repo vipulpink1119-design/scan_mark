@@ -1,4 +1,4 @@
-const APPS_SCRIPT_URL = 'PASTE_YOUR_WEB_APP_URL_HERE';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz5I7RKGcL8d8CWzIQcJmBRhCdFZ7j1QC47k8PKOWVxoAQwEdggDXmkEosEnHGWQnDj/exec';
 const video = document.getElementById('video');
 const overlayCanvas = document.getElementById('overlayCanvas');
 const overlayCtx = overlayCanvas.getContext('2d');

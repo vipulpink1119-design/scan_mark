@@ -3,36 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mark Scanner V2 Pro</title>
+  <title>Mark Scanner Ultra Accurate</title>
   <link rel="stylesheet" href="style.css" />
+  <script async src="https://docs.opencv.org/4.x/opencv.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
 </head>
 <body>
   <div class="app">
-    <h1>Mark Scanner V2 Pro</h1>
+    <h1>Mark Scanner Ultra Accurate</h1>
 
     <div class="scanner-shell">
       <video id="video" autoplay playsinline muted></video>
-      <canvas id="fullCanvas" class="hidden"></canvas>
-
-      <div class="overlay">
-        <div class="roi uid-roi">
-          <span>UID Area</span>
-        </div>
-        <div class="roi table-roi">
-          <span>Marks Table Area</span>
-        </div>
-      </div>
+      <canvas id="overlayCanvas"></canvas>
+      <div id="alignStatus" class="align-status bad">Not aligned</div>
     </div>
 
     <div class="controls">
       <button id="startBtn">Start Camera</button>
-      <button id="scanBtn">Scan Now</button>
+      <button id="captureBtn" disabled>Capture</button>
       <button id="autoBtn">Auto Scan: OFF</button>
       <button id="clearBtn">Clear All</button>
       <button id="saveBtn">Save To Sheet</button>
     </div>
 
-    <div id="status">Ready</div>
+    <div id="status">Loading...</div>
 
     <div class="table-wrap">
       <table id="dataTable">
@@ -53,6 +47,7 @@
             <th>Q12</th>
             <th>Q13</th>
             <th>Total</th>
+            <th>Flag</th>
             <th>Action</th>
           </tr>
         </thead>
